@@ -1,0 +1,19 @@
+repos:
+  - repo: local
+    hooks:
+      - args: [--ignore-init-module-imports, --in-place, --remove-all-unused-imports, --remove-unused-variables]
+        entry: autoflake
+        id: autoflake
+        language: system
+        name: autoflake
+      - entry: black
+        id: black
+        language: system
+        name: black
+        types: [python]
+      - args: [--profile, black]
+        entry: isort
+        id: isort
+        language: system
+        name: isort
+
