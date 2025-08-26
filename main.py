@@ -26,7 +26,7 @@ from torch_geometric.transforms import Compose
 from tqdm import tqdm
 
 import wandb_impostor as wandb
-from src.datasets import CoronaryDeepOperatorLearning, LeftMainCoronaryBifurcation
+from src.datasets import CoronaryDeepOperatorLearning
 from src.nn.models import MLP
 from src.transforms import PointCloudSampling, compute_gradient
 from src.utils import AccuracyAnalysis
@@ -34,7 +34,6 @@ from src.utils import AccuracyAnalysis
 parser = ArgumentParser()
 
 parser.add_argument("--model_id", type=str, required=True)
-parser.add_argument("--dataset_id", type=str, required=True)
 
 parser.add_argument("--num_epochs", type=int, default=0)
 parser.add_argument("--run_id", type=str, default=None)
@@ -78,13 +77,10 @@ def main(rank, num_gpus):
         num_gpus,
         project_name="coronary_deep_operator_learning",
         wandb_config=wandb_config,
-        run_id=f"{args.dataset_id}{'-' if args.run_id else ''}{args.run_id or ''}",
+        run_id=f"codol{'-' if args.run_id else ''}{args.run_id or ''}",
     )
 
-    dataset = {
-        "lmcb": LeftMainCoronaryBifurcation,
-        "codol": CoronaryDeepOperatorLearning,
-    }[args.dataset_id]
+    dataset = CoronaryDeepOperatorLearning
     if "pointnet" in args.model_id:
         positional_transform = RadiusPointCloudHierarchy(
             (0.0033, 0.33443333, 0.66556667, 0.9967), interp_simplex="tetrahedron"
@@ -170,7 +166,7 @@ def main(rank, num_gpus):
     neural_network.to(training_device)
 
     working_directory = working_directory = (
-        f"{args.dataset_id}{'-' if args.run_id else ''}{args.run_id or ''}"
+        f"codol{'-' if args.run_id else ''}{args.run_id or ''}"
     )
     load_neural_network_weights(neural_network, working_directory)
 

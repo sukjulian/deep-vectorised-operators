@@ -23,10 +23,14 @@ class LeftMainCoronaryBifurcation(pyg.data.Dataset):
         self.num_data_points = self.num_simulations * self.num_time_steps_per_simulation
 
         self.path_to_root = os.path.abspath("lmcb-dataset")
-        self.path_to_hdf5 = glob(os.path.join(self.path_to_root, "raw", "*.hdf5"))[0]
 
-        with h5py.File(self.path_to_hdf5, "r") as hdf5_file:
-            self.simulation_names = list(hdf5_file)
+        if os.path.exists(self.path_to_root):
+            self.path_to_hdf5 = glob(os.path.join(self.path_to_root, "raw", "*.hdf5"))[
+                0
+            ]
+
+            with h5py.File(self.path_to_hdf5, "r") as hdf5_file:
+                self.simulation_names = list(hdf5_file)
 
         self.fold_size = 12  # cross-validation
 
