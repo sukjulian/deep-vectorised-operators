@@ -9,7 +9,7 @@ import numpy as np
 import torch
 import torch_geometric as pyg
 
-from ns_gcn.transforms import compute_mesh_vertex_normals, scale_to_centered_hypercube
+from src.transforms import compute_mesh_vertex_normals, scale_to_centered_hypercube
 
 
 class LeftMainCoronaryBifurcation(pyg.data.Dataset):
@@ -230,7 +230,7 @@ class LeftMainCoronaryBifurcation(pyg.data.Dataset):
             transformed_tensor = self.transform_cache[transform_name][shape_id]
 
         elif os.path.exists(disk_location):
-            transformed_tensor = torch.load(disk_location)
+            transformed_tensor = torch.load(disk_location, weights_only=False)
             self.transform_cache[transform_name][shape_id] = transformed_tensor
 
         else:

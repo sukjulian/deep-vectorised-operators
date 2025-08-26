@@ -28,14 +28,6 @@ def tets_to_face(tets):
     return face, surface_idcs.int()
 
 
-def volume_to_surface(volume_idcs, surface_idcs):
-    return (
-        torch.nonzero(torch.any(surface_idcs[:, None] == volume_idcs[None, :], dim=-1))
-        .squeeze()
-        .int()
-    )
-
-
 def compute_mesh_vertex_normals(pos, face):
     long_face = face.long()
 

@@ -26,10 +26,10 @@ from torch_geometric.transforms import Compose
 from tqdm import tqdm
 
 import wandb_impostor as wandb
-from ns_gcn.datasets import CoronaryDeepOperatorLearning, LeftMainCoronaryBifurcation
-from ns_gcn.nn.models import MLP
-from ns_gcn.transforms import PointCloudSampling, compute_gradient
-from ns_gcn.utils import AccuracyAnalysis
+from src.datasets import CoronaryDeepOperatorLearning, LeftMainCoronaryBifurcation
+from src.nn.models import MLP
+from src.transforms import PointCloudSampling, compute_gradient
+from src.utils import AccuracyAnalysis
 
 parser = ArgumentParser()
 
@@ -102,7 +102,6 @@ def main(rank, num_gpus):
                 # PointCloudSampling(ratio_volume_samples=1.),
                 positional_transform,
                 positional_encoding,
-                compute_boundary_mass_matrices,
             )
         ),
     )
@@ -363,6 +362,8 @@ def positional_encoding(data):
         ),
         dim=1,
     )
+
+    delattr(data, "tets")
 
     return data
 
