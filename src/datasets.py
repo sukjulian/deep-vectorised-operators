@@ -360,7 +360,8 @@ class CoronaryDeepOperatorLearning(LeftMainCoronaryBifurcation):
                 ),
             ).clone()
 
-            data = data.update(positional_data)
+            data = data.update(positional_data)  # positions may be resampled
+            data = positional_data.update(data)  # accomodate PointNet++ and LaB
 
         return data
 
