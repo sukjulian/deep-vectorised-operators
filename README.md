@@ -23,14 +23,14 @@ and you should be good to go.
 If you found deep vectorised operators useful, please cite:
 ```
 @article{DeepVectorisedOperators,
-  title = {Deep vectorised operators for pulsatile hemodynamics estimation in coronary arteries from a steady-state prior},
-  journal = {Computer Methods and Programs in Biomedicine},
-  volume = {271},
-  pages = {108958},
-  year = {2025},
-  issn = {0169-2607},
-  doi = {https://doi.org/10.1016/j.cmpb.2025.108958},
-  url = {https://www.sciencedirect.com/science/article/pii/S016926072500375X},
-  author = {Julian Suk and Guido Nannini and Patryk Rygiel and Christoph Brune and Gianluca Pontone and Alberto Redaelli and Jelmer M. Wolterink}
+title = {Deep vectorised operators for pulsatile hemodynamics estimation in coronary arteries from a steady-state prior},
+journal = {Computer Methods and Programs in Biomedicine},
+volume = {271},
+pages = {108958},
+year = {2025},
+issn = {0169-2607},
+doi = {https://doi.org/10.1016/j.cmpb.2025.108958},
+url = {https://www.sciencedirect.com/science/article/pii/S016926072500375X},
+author = {Julian Suk and Guido Nannini and Patryk Rygiel and Christoph Brune and Gianluca Pontone and Alberto Redaelli and Jelmer M. Wolterink}
 }
 ```
