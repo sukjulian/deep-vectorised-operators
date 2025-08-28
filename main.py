@@ -54,7 +54,7 @@ wandb_config = {
     "batch_size": {"accumulated": 12, "per_gpu": per_gpu_batch_size[args.model_id]},
     "learning_rate": 3e-4,  # best learning rate for Adam, hands down
     "num_epochs": args.num_epochs,
-    "loss_term_factors": {"velocity": 1.0, "pressure": 3e-1, "flux": None},
+    "loss_term_factors": {"velocity": 1.0, "pressure": 3e-1},
     "lr_decay_gamma": 0.9955,  # currently unused
 }
 
@@ -765,7 +765,7 @@ def ddp_module(torch_module, rank):
         torch_module = DistributedDataParallel(
             torch_module,
             device_ids=[rank],
-            find_unused_parameters=isinstance(torch_module, LaBGATr),
+            # find_unused_parameters=isinstance(torch_module, LaBGATr),
         )
 
     return torch_module
