@@ -116,8 +116,6 @@ def main(rank, num_gpus):
     )
     # test_data_slice = slice(*dataset.fold_(args.fold_idx)['evaluation'])
     test_data_slice = dataset.splits["test"]
-    # visualisation_data_range = range(*dataset.fold_(args.fold_idx)['evaluation'])[:2]
-    visualisation_data_range = dataset.splits["test"].nonzero().squeeze()[:2]
 
     match args.model_id:
         case "mlp":
@@ -202,7 +200,6 @@ def main(rank, num_gpus):
             "training_device": training_device,
             "dataset": dataset,
             "test_data_slice": test_data_slice,
-            "visualisation_data_range": visualisation_data_range,
             "working_directory": working_directory,
         },
     )
